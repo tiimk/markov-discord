@@ -786,6 +786,23 @@ client.on('messageCreate', async (message) => {
       }
     }
   }
+  if (command === null) {
+      if (isHumanAuthoredMessage(message)) {
+          if (Math.random() < 0.63 / 100) {
+                L.debug('Responding to mention');
+                // <@!278354154563567636> how are you doing?
+                const startSeed = message.content.replace(/<@!\d+>/g, '').trim();
+                const generatedResponse = await generateResponse(message, { startSeed });
+                await handleResponseMessage(generatedResponse, message);
+          }
+
+          if (await isValidChannel(message.channel)) {
+                L.debug('Listening');
+                const markov = await getMarkovByGuildId(message.channel.guildId);
+                await markov.addData([messageToData(message)]);
+          }
+      }
+  }
 });
 
 client.on('messageDelete', async (message) => {
