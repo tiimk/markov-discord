@@ -147,7 +147,7 @@ export class AppConfig {
   * Chance to randomly respond to a message
   */
   @IsOptional()
-  @IsInt()
+  @IsString()
   randomChance = process.env.randomChance || 50 / 100;
 
   /**
