@@ -788,7 +788,7 @@ client.on('messageCreate', async (message) => {
   }
   if (command === null) {
       if (isHumanAuthoredMessage(message)) {
-          if (Math.random() < 0.63 / 100) {
+          if (Math.random() < config.randomChance ) {
                 L.debug('Responding to mention');
                 // <@!278354154563567636> how are you doing?
                 const startSeed = message.content.replace(/<@!\d+>/g, '').trim();
@@ -802,7 +802,7 @@ client.on('messageCreate', async (message) => {
                 await markov.addData([messageToData(message)]);
           }
       }
-  }
+   }
 });
 
 client.on('messageDelete', async (message) => {

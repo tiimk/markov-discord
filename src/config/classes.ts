@@ -144,6 +144,13 @@ export class AppConfig {
   maxTries = process.env.MAX_TRIES ? parseInt(process.env.MAX_TRIES, 10) : 1000;
 
   /**
+  * Chance to randomly respond to a message
+  */
+  @IsOptional()
+  @IsInt()
+  randomChance = process.env.randomChance || 50 / 100;
+
+  /**
    * The minimum score required when generating a sentence.
    * A relative "score" based on the number of possible permutations.
    * Higher is "better", but the actual value depends on your corpus.
