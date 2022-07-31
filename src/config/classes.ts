@@ -46,7 +46,6 @@ export class AppConfig {
    * Random Chance to reply
    */
   @IsDefined()
-  @IsString()
   @IsNotEmpty()
   randomChance = process.env.RANDOMCHANCE || '';
 
