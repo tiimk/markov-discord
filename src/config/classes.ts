@@ -42,6 +42,13 @@ export class AppConfig {
   @IsString()
   @IsNotEmpty()
   token = process.env.TOKEN || '';
+  /**
+   * Random Chance to reply
+   */
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  randomChance = process.env.RANDOMCHANCE || '';
 
   /**
    * The command prefix used to trigger the bot commands (when not using slash commands)
@@ -142,13 +149,6 @@ export class AppConfig {
   @IsOptional()
   @IsInt()
   maxTries = process.env.MAX_TRIES ? parseInt(process.env.MAX_TRIES, 10) : 1000;
-
-  /**
-  * Chance to randomly respond to a message
-  */
-  @IsOptional()
-  @IsString()
-  randomChance = process.env.randomChance || 50 / 100;
 
   /**
    * The minimum score required when generating a sentence.
