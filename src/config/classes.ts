@@ -8,8 +8,8 @@ import {
   IsArray,
   IsInt,
   IsDefined,
-  IsNotEmpty,
   IsDecimal,
+  IsNotEmpty,
 } from 'class-validator';
 
 export enum LogLevel {
@@ -43,13 +43,6 @@ export class AppConfig {
   @IsString()
   @IsNotEmpty()
   token = process.env.TOKEN || '';
-  /**
-   * Random Chance to reply
-   */
-  @IsDefined()
-  @IsDecimal()
-  @IsNotEmpty()
-  randomChance = process.env.RANDOMCHANCE;
 
   /**
    * The command prefix used to trigger the bot commands (when not using slash commands)
@@ -171,4 +164,14 @@ export class AppConfig {
   @IsOptional()
   @IsString()
   devGuildId = process.env.DEV_GUILD_ID;
+
+  /**
+   * The slash command name to generate a message from the bot. (e.g. `/mark`)
+   * @example message
+   * @default mark
+   * @env SLASH_COMMAND_NAME
+   */
+  @IsOptional()
+  @IsDecimal()
+  randomChanceRespond = process.env.RANDOMCHANCERESPOND || 50/100 ;
 }

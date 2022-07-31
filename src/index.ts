@@ -778,7 +778,7 @@ client.on('messageCreate', async (message) => {
         const generatedResponse = await generateResponse(message, { startSeed });
         await handleResponseMessage(generatedResponse, message);
       }
-      if (Math.random() < config.randomChance) {
+        if (Math.random() < config.randomChanceRespond ) {
         L.debug('Responding to random chance');
         // <@!278354154563567636> how are you doing?
         const startSeed = message.content.replace(/<@!\d+>/g, '').trim();
