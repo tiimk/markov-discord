@@ -9,6 +9,7 @@ import {
   IsInt,
   IsDefined,
   IsNotEmpty,
+  IsDecimal,
 } from 'class-validator';
 
 export enum LogLevel {
@@ -46,8 +47,9 @@ export class AppConfig {
    * Random Chance to reply
    */
   @IsDefined()
+  @IsDecimal()
   @IsNotEmpty()
-  randomChance = process.env.RANDOMCHANCE || '';
+  randomChance = process.env.RANDOMCHANCE;
 
   /**
    * The command prefix used to trigger the bot commands (when not using slash commands)
