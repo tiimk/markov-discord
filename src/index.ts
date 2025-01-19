@@ -234,20 +234,20 @@ function validateMessage(message: Discord.Message): MessageCommands {
   return command;
 }
 
-function messageToData(message: Discord.Message): AddDataProps {
-  const attachmentUrls = message.attachments.map((a) => a.url);
-  let custom: MarkovDataCustom | undefined;
-  if (attachmentUrls.length) custom = { attachments: attachmentUrls };
-  const tags: string[] = [message.id];
-  if (message.channel.isThread()) tags.push(message.channelId); // Add thread channel ID
-  const channelId = getGuildChannelId(message.channel);
-  if (channelId) tags.push(channelId); // Add guild channel ID
-  if (message.guildId) tags.push(message.guildId); // Add guild ID
-  return {
-    string: message.content,
-    custom,
-    tags,
-  };
+function messageToData(message) {
+    const tags = [message.id];
+    if (message.channel.isThread())
+        tags.push(message.channelId);
+    const channelId = getGuildChannelId(message.channel);
+    if (channelId)
+        tags.push(channelId);
+    if (message.guildId)
+        tags.push(message.guildId);
+    return {
+        string: message.content,
+        custom: null, // Set custom to null since we are not including attachments
+        tags,
+    };
 }
 
 /**
