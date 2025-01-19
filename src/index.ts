@@ -234,7 +234,7 @@ function validateMessage(message: Discord.Message): MessageCommands {
   return command;
 }
 
-function messageToData(message) {
+function messageToData(message: Message) {
     const tags = [message.id];
     if (message.channel.isThread())
         tags.push(message.channelId);
